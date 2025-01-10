@@ -7,6 +7,8 @@ This script allows you to get answers to tests even during exams! Just open your
 > [!IMPORTANT]
 > This tool is intended for educational purposes only. Use it responsibly and comply with your institution's policies. 🚨
 
+---
+
 ## 🚀 Features
 - Parse `.docx` files containing test questions and answers.
 - Upload parsed questions to a running server for easy access.
