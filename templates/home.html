@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemis</title>
+</head>
+<body>
+    <style>
+        img{
+            width: 600px;
+            height: auto;
+        }
+    </style>
+    <section style="padding: 0 15px" class="wrapper">
+        <p>Во вкладке, где тесты нажмите сочетание клавиш Ctrl+Shift+I (в Chrome), чтобы открыть DevTools</p>
+        <p>Перейдите во вкладку "Console"</p>
+        <a href="https://ibb.co/5rNy9K2"><img src="https://i.ibb.co/Jvf4d3C/console.png" alt="console" border="0"></a>
+        <p>Скопируйте код ниже:</p>
+        <div>
+            <pre style="background-color:aqua; padding: 10px; width: 600px; border-radius: 10px; border: 3px solid gray;" class="code">
+                <code>
+fetch('https://hemisstudent.pythonanywhere.com/parse', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ html: document.documentElement.outerHTML })
+}).then(response => response.json())
+.then(data => console.log('Результаты:', data));</code>
+            </pre>
+        </div>
+        <p>Вставьте её</p>
+        <a href="https://ibb.co/1RKzWwF"><img src="https://i.ibb.co/wpCcmx5/paste.png" alt="paste" border="0"></a>
+        <p>Нажмите Enter</p>
+        <p>Ожидайте несколько секунд, затем вы увидите в консоли браузера результаты</p>
+        <p>Раскройте чтобы увидеть вопросы с ключами</p>
+        <a href="https://ibb.co/PNkVdJk"><img src="https://i.ibb.co/qd62vh6/open.png" alt="open" border="0"></a>
+        <p>И вуаля ответы в формате "Вопрос: Ответ"</p>
+        <a href="https://ibb.co/ssWsC2k"><img src="https://i.ibb.co/Yf0fX3Y/answers.png" alt="answers" border="0"></a>
+        <p>Они отсортированы, пришлось лишь выбрать правильные ответы и не надо ничего заучивать :)</p>
+    </section>
+</body>
+</html>

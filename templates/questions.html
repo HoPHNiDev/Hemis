@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тесты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .question.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .question.correct {
+            background-color: #d4edda;
+            border-color: green;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+        }
+        .answers {
+            list-style-type: none;
+            padding: 0;
+        }
+        .answers li {
+            margin-bottom: 5px;
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+        .answers li:hover {
+            background-color: #f0f0f0;
+        }
+        .answers li.selected {
+            border-color: red;
+            background-color: #f2adb4;
+        }
+
+        .answers li.correct {
+            background-color: #85f9a1;
+            border-color: green;
+        }
+
+        #generate-btn{
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        #subject-select{
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Тесты</h1>
+    <label for="subject-select" style="">Выберите предмет:</label>
+    <select id="subject-select">
+        <option value="english">Английский</option>
+        <option value="history">История</option>
+    </select>
+    <button id="generate-btn">Сгенерировать вопросы</button>
+    <div id="questions-container" style="margin-top: 20px;"></div>
+
+    <script>
+        const questionsData = {};
+        let subject_questions = [];
+        let subjectOptions = ''
+        {% for subject, questions_list in questions.items() %}
+            subject_questions = []
+            {% for question in questions_list %}
+                {% if question.question != '' %}
+                subject_questions.push({
+                    'question': '{{ question.question }}',
+                    'answers': {{ question.answers | tojson }},
+                    'correct_answer_id': {{ question.correct_answer_id }}
+                });
+                {% endif %}
+            {% endfor %}
+            questionsData["{{ subject }}"] = subject_questions;
+            subjectOptions += `<option value="{{subject}}">{{subject | capitalize}}</option>`;
+        {% endfor %}
+
+        selection = document.getElementById('subject-select')
+        selection.innerHTML = subjectOptions
+    
+        function getRandomQuestions(data, count) {
+            const shuffled = data.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+    
+        function renderQuestions(subject) {
+            const container = document.getElementById("questions-container");
+            container.innerHTML = ""; // Clear previous questions
+    
+            const questions = getRandomQuestions(questionsData[subject], 25); // Generate 25 random questions
+    
+            questions.forEach((item, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+    
+                const questionTitle = document.createElement("h3");
+                questionTitle.textContent = `${index + 1}. ${item.question}`;
+                questionDiv.appendChild(questionTitle);
+    
+                const answersList = document.createElement("ul");
+                answersList.className = "answers";
+    
+                item.answers.forEach((answer, answerIndex) => {
+                    const answerItem = document.createElement("li");
+                    answerItem.textContent = answer;
+                    answerItem.setAttribute("data-answer-id", answerIndex); // Store answer index
+                    answerItem.onclick = () => {
+                        // Clear selections
+                        const siblings = answerItem.parentNode.querySelectorAll("li");
+                        siblings.forEach(sib => sib.classList.remove("selected", "correct", "incorrect"));
+    
+                        // Highlight current selection
+                        answerItem.classList.add("selected");
+    
+                        // Check if the answer is correct
+                        if (answerIndex === item.correct_answer_id) {
+                            answerItem.classList.add("correct"); // Highlight incorrect answer
+                            questionDiv.classList.add("correct"); // Highlight correct answer
+                        } else {
+                            answerItem.classList.add("incorrect"); // Highlight incorrect answer
+                            questionDiv.classList.add("incorrect"); // Highlight incorrect answer
+    
+                            // Optionally highlight the correct answer
+                            siblings[item.correct_answer_id].classList.add("correct");
+                            
+                        }
+                    };
+                    answersList.appendChild(answerItem);
+                });
+    
+                questionDiv.appendChild(answersList);
+                container.appendChild(questionDiv);
+            });
+        }
+    
+        document.getElementById("generate-btn").onclick = () => {
+            const subject = document.getElementById("subject-select").value;
+            renderQuestions(subject);
+        };
+    </script>    
+</body>
+</html>
+       
