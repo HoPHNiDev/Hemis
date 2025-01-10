@@ -1,11 +1,11 @@
-> [!IMPORTANT]
-> This tool is intended for educational purposes only. Use it responsibly and comply with your institution's policies. 🚨
-
 # 🛠️ Hemis System Bypass  
 
 This script allows you to get answers to tests even during exams! Just open your console and run some code. 🧑‍💻
 
 ---
+
+> [!IMPORTANT]
+> This tool is intended for educational purposes only. Use it responsibly and comply with your institution's policies. 🚨
 
 ## 🚀 Features
 - Parse `.docx` files containing test questions and answers.
