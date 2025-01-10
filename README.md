@@ -16,8 +16,8 @@ This script allows you to get answers to tests even during exams! Just open your
 ### 1️⃣ Clone the Repository
 First, clone the repository and navigate to the project folder:
 ```bash
-git clone https://github.com/HoPHNiDev/HereWallet.git
-cd HereWallet
+git clone https://github.com/HoPHNiDev/Hemis.git
+cd Hemis
 ```
 ### 2️⃣ Installation
 **🐧 Linux**
