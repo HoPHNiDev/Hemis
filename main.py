@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from flask_cors import CORS
 from rapidfuzz import fuzz, process
 from loguru import logger
-import flask
 
 app = Flask(__name__)
 CORS(app)
