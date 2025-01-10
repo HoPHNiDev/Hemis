@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This tool is intended for educational purposes only. Use it responsibly and comply with your institution's policies. 🚨
+
 # 🛠️ Hemis System Bypass  
 
 This script allows you to get answers to tests even during exams! Just open your console and run some code. 🧑‍💻
@@ -77,6 +80,3 @@ After setup:
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@HoPHNiDev](https://github.com/HoPHNiDev) - Idea & Initial work
-
-> [!IMPORTANT]
-> This tool is intended for educational purposes only. Use it responsibly and comply with your institution's policies. 🚨
